@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MVVM</string>
+    <string name="title_favourites">Favourites</string>
+    <string name="title_photos">Photos</string>
+    <string name="title_info">Info</string>
+
+    <string name="error">Error</string>
+    <string name="error_no_connection">No connection</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="creator_name">Alexander Marchenko</string>
+    <string name="creator_about">Android developer</string>
+    <string name="creator_email">remain4life@gmail.com</string>
+    <string name="creator_button">Just click button :)</string>
+</resources>
