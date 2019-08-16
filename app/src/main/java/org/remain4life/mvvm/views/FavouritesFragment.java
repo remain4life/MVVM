@@ -11,7 +11,7 @@ import org.remain4life.mvvm.views.base.BaseFragment;
 
 import java.util.Objects;
 
-public class FavouritesFragment extends BaseFragment<FragmentFavouritesBinding, FavouritesViewModel> implements FavouritesNavigator{
+public class FavouritesFragment extends BaseFragment<FragmentFavouritesBinding, FavouritesViewModel> implements FavouritesINavigator {
     @Override
     public FavouritesViewModel onCreateViewModel(@Nullable Bundle savedInstanceState) {
         return new FavouritesViewModel(Objects.requireNonNull(getActivity()), this);

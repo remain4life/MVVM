@@ -12,6 +12,10 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import org.remain4life.mvvm.views.base.BaseRecyclerView;
+
+import java.util.List;
+
 public class BindingAdapters {
     private BindingAdapters() { }
 
@@ -77,6 +81,11 @@ public class BindingAdapters {
     public static void setSelectedItemPosition(
             BottomNavigationView view, int position) {
         view.setSelectedItemId(position);
+    }
+
+    @BindingAdapter("data")
+    public static <T> void setAdapterData(BaseRecyclerView recyclerView, List<T> data) {
+        recyclerView.setData(data);
     }
 }
 

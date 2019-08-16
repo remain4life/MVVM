@@ -12,13 +12,13 @@ import android.util.Log;
 import org.remain4life.mvvm.R;
 import org.remain4life.mvvm.helpers.ResponseException;
 import org.remain4life.mvvm.helpers.StatusResponse;
-import org.remain4life.mvvm.views.Navigator;
+import org.remain4life.mvvm.views.INavigator;
 
 import io.reactivex.disposables.Disposable;
 
 import static org.remain4life.mvvm.helpers.Constants.ERROR_TAG;
 
-public abstract class BaseViewModel<N extends Navigator> extends BaseObservable {
+public abstract class BaseViewModel<N extends INavigator> extends BaseObservable {
     protected Context context;
     protected N navigator;
     private Disposable disposable;

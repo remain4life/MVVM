@@ -1,5 +1,5 @@
 package org.remain4life.mvvm.views;
 
-public interface InfoNavigator extends Navigator {
+public interface InfoINavigator extends INavigator {
     void onButtonClicked();
 }

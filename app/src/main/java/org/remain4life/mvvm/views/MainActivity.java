@@ -15,7 +15,7 @@ import org.remain4life.mvvm.views.base.BaseActivity;
 import java.util.Objects;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
-        implements MainNavigator {
+        implements IMainNavigator {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

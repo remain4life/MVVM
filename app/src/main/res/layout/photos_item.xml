@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="photosViewHolder"
+            type="org.remain4life.mvvm.adapters.PhotosRecyclerViewAdapter.PhotosViewHolder"/>
+        <variable
+            name="photosItem"
+            type="org.remain4life.mvvm.model.PhotoItem"/>
+    </data>
+    <FrameLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:imageUrl="@{photosItem.uri}"
+            android:scaleType="centerCrop"/>
+
+    </FrameLayout>
+</layout>

@@ -12,7 +12,7 @@ import org.remain4life.mvvm.views.base.BaseFragment;
 
 import java.util.Objects;
 
-public class InfoFragment extends BaseFragment<FragmentInfoBinding, InfoViewModel> implements InfoNavigator{
+public class InfoFragment extends BaseFragment<FragmentInfoBinding, InfoViewModel> implements InfoINavigator {
     @Override
     public InfoViewModel onCreateViewModel(@Nullable Bundle savedInstanceState) {
         return new InfoViewModel(Objects.requireNonNull(getActivity()), this);

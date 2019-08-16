@@ -11,7 +11,7 @@ import org.remain4life.mvvm.views.base.BaseFragment;
 
 import java.util.Objects;
 
-public class PhotosFragment extends BaseFragment<FragmentPhotosBinding, PhotosViewModel> implements PhotosNavigator {
+public class PhotosFragment extends BaseFragment<FragmentPhotosBinding, PhotosViewModel> implements IPhotosNavigator {
     @Override
     public PhotosViewModel onCreateViewModel(@Nullable Bundle savedInstanceState) {
         return new PhotosViewModel(Objects.requireNonNull(getActivity()), this);

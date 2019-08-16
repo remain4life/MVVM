@@ -267,4 +267,6 @@ public class PhotosQuery {
     }
 
     public static final String PQ_STATUS = "status";
+    public static final String PQ_ID = "id";
+    public static final String PQ_URI = "id";
 }
