@@ -42,6 +42,7 @@ import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public class PhotosQuery {
+
     private interface InternalApi {
         @GET("/")
         Single<JsonObject> get(
@@ -268,5 +269,20 @@ public class PhotosQuery {
 
     public static final String PQ_STATUS = "status";
     public static final String PQ_ID = "id";
-    public static final String PQ_URI = "id";
+    public static final String PQ_DESCRIPTION = "description";
+    public static final String PQ_ALT_DESCRIPTION = "alt_description";
+    public static final String PQ_IS_LIKED = "liked_by_user";
+    public static final String PQ_URLS = "urls";
+    public static final String PQ_URLS_THUMB = "thumb";
+    public static final String PQ_URLS_REGULAR = "regular";
+    public static final String PQ_LINKS = "links";
+    public static final String PQ_LINKS_SELF = "self";
+    public static final String PQ_LINKS_DOWNLOAD = "download";
+    public static final String PQ_LINKS_HTML = "html";
+    public static final String PQ_USER = "user";
+    public static final String PQ_USER_NICK = "username";
+    public static final String PQ_USER_NAME = "name";
+    public static final String PQ_USER_LOCATION = "location";
+
+
 }

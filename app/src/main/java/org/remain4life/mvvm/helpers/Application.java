@@ -1,13 +1,17 @@
 package org.remain4life.mvvm.helpers;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.multidex.MultiDex;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.remain4life.mvvm.helpers.gson.UriGsonTypeAdapter;
+
 public class Application extends android.app.Application {
     public static final Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(Uri.class, new UriGsonTypeAdapter())
             .create();
 
     private static Application app;
