@@ -4,15 +4,17 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import org.remain4life.mvvm.R;
+import org.remain4life.mvvm.BR;
 import org.remain4life.mvvm.helpers.ResponseException;
 import org.remain4life.mvvm.helpers.StatusResponse;
-import org.remain4life.mvvm.views.INavigator;
+import org.remain4life.mvvm.views.base.INavigator;
 
 import io.reactivex.disposables.Disposable;
 
@@ -23,11 +25,21 @@ public abstract class BaseViewModel<N extends INavigator> extends BaseObservable
     protected N navigator;
     private Disposable disposable;
     private Dialog dialog;
-
+    private boolean isLoading;
 
     public BaseViewModel(@NonNull Context context, N navigator) {
         this.context = context;
         this.navigator = navigator;
+    }
+
+    @Bindable
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    public void setLoading(boolean loading) {
+        isLoading = loading;
+        notifyPropertyChanged(BR.loading);
     }
 
     public void onError(String error) {

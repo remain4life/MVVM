@@ -1,4 +1,4 @@
-package org.remain4life.mvvm.views;
+package org.remain4life.mvvm.views.base;
 
 import android.support.v4.app.Fragment;
 

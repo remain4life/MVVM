@@ -8,16 +8,20 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.google.common.io.ByteStreams;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+
+import org.remain4life.mvvm.R;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -44,36 +48,36 @@ import retrofit2.http.QueryMap;
 public class PhotosQuery {
 
     private interface InternalApi {
-        @GET("/")
-        Single<JsonObject> get(
-                @Query("alef_action") String alefAction,
+        @GET("/photos/")
+        Single<JsonArray> getPhotos(
+                @Query(PQ_CLIENT_ID) String clientId,
                 @QueryMap Map<String, Object> params
         );
 
         @FormUrlEncoded
         @POST("/")
         Single<JsonObject> post(
-                @Query("alef_action") String alefAction,
+                @Query("needed_action") String neededAction,
                 @FieldMap Map<String, Object> params
         );
 
         @FormUrlEncoded
         @PUT("/")
         Single<JsonObject> put(
-                @Query("alef_action") String alefAction,
+                @Query("needed_action") String neededAction,
                 @FieldMap Map<String, Object> params
         );
 
         @DELETE("/")
         Single<JsonObject> delete(
-                @Query("alef_action") String alefAction,
+                @Query("needed_action") String neededAction,
                 @QueryMap Map<String, Object> params
         );
 
         @Multipart
         @POST("/")
         Single<JsonObject> multipart(
-                @Query("alef_action") String alefAction,
+                @Query("needed_action") String neededAction,
                 @PartMap Map<String, Object> params
         );
     }
@@ -129,7 +133,7 @@ public class PhotosQuery {
     private InternalApi internalApi;
 
     private PhotosQuery() {
-        setAddress("https://api.unsplash.com/");
+        setAddress("https://api.unsplash.com");
     }
 
     public String getAddress() {
@@ -283,6 +287,35 @@ public class PhotosQuery {
     public static final String PQ_USER_NICK = "username";
     public static final String PQ_USER_NAME = "name";
     public static final String PQ_USER_LOCATION = "location";
+
+    public static final String PQ_CLIENT_ID = "client_id";
+    public static final String PQ_PAGE = "page";
+    public static final String PQ_PER_PAGE = "per_page";
+
+
+    /**
+     * Loads photos data from Unsplash with needed parameters
+     *
+     * @param page needed page to load (first by default)
+     * @param perPage number of photos per page (10 by default, 30 max according to API docs)
+     * @return Single representation of array of Json objects with photo data
+     */
+    public static Single<JsonArray> loadPhotos(Integer page, Integer perPage) {
+        return Single.fromCallable(
+                () -> {
+                    final Map<String, Object> params = new HashMap<>(2);
+                    addParam(params, PQ_PAGE, page);
+                    addParam(params, PQ_PER_PAGE, perPage);
+                    return params;
+                }
+        )
+                .flatMap(
+                        params -> getInstance().internalApi.getPhotos(
+                                Application.getApplication().getString(R.string.access_key),
+                                params
+                        )
+                );
+    }
 
 
 }

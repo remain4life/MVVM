@@ -30,8 +30,14 @@ public abstract class BaseRecyclerView extends RecyclerView {
     }
 
     public <T> void setData(List<T> data) {
-        //noinspection unchecked
-        ((IListAdapter<T>) Objects.requireNonNull(getAdapter())).setData(data);
+        if (data != null) {
+            //noinspection unchecked
+            IListAdapter<T> adapter = (IListAdapter<T>) getAdapter();
+            if (adapter != null) {
+                adapter.setData(data);
+            }
+        }
+
     }
 
     protected abstract LayoutManager createLayoutManager(Context context, @Nullable AttributeSet attrs, int defStyle);

@@ -9,7 +9,7 @@ import org.remain4life.mvvm.R;
 import org.remain4life.mvvm.viewmodels.base.BaseViewModel;
 import org.remain4life.mvvm.views.FavouritesFragment;
 import org.remain4life.mvvm.views.InfoFragment;
-import org.remain4life.mvvm.views.IMainNavigator;
+import org.remain4life.mvvm.views.base.IMainNavigator;
 import org.remain4life.mvvm.views.PhotosFragment;
 
 public class MainViewModel extends BaseViewModel<IMainNavigator> implements BottomNavigationView.OnNavigationItemSelectedListener {

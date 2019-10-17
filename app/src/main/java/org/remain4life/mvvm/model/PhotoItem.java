@@ -1,8 +1,10 @@
 package org.remain4life.mvvm.model;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -10,11 +12,11 @@ import org.remain4life.mvvm.helpers.PhotosQuery;
 
 public class PhotoItem extends BaseObservable implements Parcelable {
     @SerializedName(PhotosQuery.PQ_ID)
-    private int id;
+    private String id;
     @SerializedName(PhotosQuery.PQ_DESCRIPTION)
-    private int description;
+    private String description;
     @SerializedName(PhotosQuery.PQ_ALT_DESCRIPTION)
-    private int altDescription;
+    private String altDescription;
     @SerializedName(PhotosQuery.PQ_IS_LIKED)
     private boolean isLiked;
 
@@ -27,7 +29,7 @@ public class PhotoItem extends BaseObservable implements Parcelable {
     @SerializedName(PhotosQuery.PQ_USER)
     private User author;
 
-    public PhotoItem(int id, int description, int altDescription, boolean isLiked, PhotoUrls photoUrls, Links links, User author) {
+    public PhotoItem(String id, String description, String altDescription, boolean isLiked, PhotoUrls photoUrls, Links links, User author) {
         this.id = id;
         this.description = description;
         this.altDescription = altDescription;
@@ -39,9 +41,9 @@ public class PhotoItem extends BaseObservable implements Parcelable {
 
 
     protected PhotoItem(Parcel in) {
-        id = in.readInt();
-        description = in.readInt();
-        altDescription = in.readInt();
+        id = in.readString();
+        description = in.readString();
+        altDescription = in.readString();
         isLiked = in.readByte() != 0;
         photoUrls = in.readParcelable(PhotoUrls.class.getClassLoader());
         links = in.readParcelable(Links.class.getClassLoader());
@@ -50,9 +52,9 @@ public class PhotoItem extends BaseObservable implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeInt(description);
-        dest.writeInt(altDescription);
+        dest.writeString(id);
+        dest.writeString(description);
+        dest.writeString(altDescription);
         dest.writeByte((byte) (isLiked ? 1 : 0));
         dest.writeParcelable(photoUrls, flags);
         dest.writeParcelable(links, flags);
@@ -75,4 +77,19 @@ public class PhotoItem extends BaseObservable implements Parcelable {
             return new PhotoItem[size];
         }
     };
+
+    @Bindable
+    public PhotoUrls getPhotoUrls() {
+        return photoUrls;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "PhotoItem{" +
+                "thumb='" + photoUrls.getThumb() + '\'' +
+                ", description='" + description + '\'' +
+                ", altDescription='" + altDescription + '\'' +
+                '}';
+    }
 }

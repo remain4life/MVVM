@@ -14,6 +14,8 @@ public class Application extends android.app.Application {
             .registerTypeAdapter(Uri.class, new UriGsonTypeAdapter())
             .create();
 
+    public static final String LOG_TAG = "MVVM_tag";
+
     private static Application app;
 
     @Override

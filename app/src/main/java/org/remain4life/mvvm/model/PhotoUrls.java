@@ -1,6 +1,7 @@
 package org.remain4life.mvvm.model;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -49,4 +50,14 @@ public class PhotoUrls extends BaseObservable implements Parcelable {
             return new PhotoUrls[size];
         }
     };
+
+    @Bindable
+    public Uri getThumb() {
+        return thumb;
+    }
+
+    @Bindable
+    public Uri getRegular() {
+        return regular;
+    }
 }

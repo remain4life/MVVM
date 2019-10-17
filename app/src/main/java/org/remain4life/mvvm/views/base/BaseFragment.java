@@ -35,6 +35,13 @@ public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseVie
         return binding.getRoot();
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.executePendingBindings();
+    }
+
     /**
      * Universal base method to bind activity to remove this code from heirs
      */

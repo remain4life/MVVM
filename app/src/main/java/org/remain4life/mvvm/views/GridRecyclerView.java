@@ -31,6 +31,7 @@ public class GridRecyclerView extends BaseRecyclerView {
 
     @Override
     protected LayoutManager createLayoutManager(Context context, @Nullable AttributeSet attrs, int defStyle) {
-        return new StaggeredGridLayoutManager(1, LinearLayout.VERTICAL);
+        return new StaggeredGridLayoutManager(2, LinearLayout.VERTICAL);
+        //return new GridLayoutManager(context, 2);
     }
 }

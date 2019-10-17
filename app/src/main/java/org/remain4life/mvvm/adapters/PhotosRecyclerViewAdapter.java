@@ -8,12 +8,15 @@ import android.databinding.PropertyChangeRegistry;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import org.remain4life.mvvm.BR;
+import org.remain4life.mvvm.BuildConfig;
 import org.remain4life.mvvm.databinding.PhotosItemBinding;
 import org.remain4life.mvvm.helpers.AdapterOnListChangedCallback;
+import org.remain4life.mvvm.helpers.Application;
 import org.remain4life.mvvm.model.PhotoItem;
 
 import java.util.List;
@@ -30,8 +33,8 @@ public class PhotosRecyclerViewAdapter
     public PhotosViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater =
                 LayoutInflater.from(viewGroup.getContext());
-        PhotosItemBinding binding = DataBindingUtil.inflate(
-                layoutInflater, i, viewGroup, false);
+        PhotosItemBinding binding = PhotosItemBinding.inflate(
+                layoutInflater, viewGroup, false);
         return new PhotosViewHolder(binding);
     }
 
@@ -53,8 +56,7 @@ public class PhotosRecyclerViewAdapter
         public PhotosViewHolder(PhotosItemBinding binding) {
             super(binding.getRoot());
             photosItemBinding = binding;
-            photosItemBinding.setVariable(BR.photosViewModel, this);
-            photosItemBinding.setPhotosItem(item);
+            photosItemBinding.setPhotosViewHolder(this);
         }
 
         public void onImage() {
@@ -69,7 +71,8 @@ public class PhotosRecyclerViewAdapter
         @CallSuper
         public void setItem(PhotoItem item) {
             this.item = item;
-            notifyPropertyChanged(BR.item);
+            photosItemBinding.setPhotosItem(item);
+            notifyPropertyChanged(BR.photosItem);
 
             photosItemBinding.executePendingBindings();
         }
@@ -96,6 +99,10 @@ public class PhotosRecyclerViewAdapter
 
     @Override
     public void setData(List<PhotoItem> data) {
+        if (BuildConfig.DEBUG) {
+            Log.d(Application.LOG_TAG, "Set data to adapter: " + data);
+        }
+
         if (this.data == data) {
             return;
         }

@@ -2,6 +2,7 @@
     <string name="app_name">MVVM</string>
     <string name="title_favourites">Favourites</string>
     <string name="title_photos">Photos</string>
+    <string name="title_photos_loaded">Photos from https://unsplash.com,\nloaded: %1$s from %2$s</string>
     <string name="title_info">Info</string>
 
     <string name="error">Error</string>

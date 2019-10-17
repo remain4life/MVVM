@@ -5,3 +5,4 @@ local.properties
 /build
 /captures
 /app/build/
+/app/src/main/res/values/api.xml

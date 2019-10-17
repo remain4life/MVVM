@@ -11,6 +11,7 @@ import org.remain4life.mvvm.BR;
 import org.remain4life.mvvm.databinding.ActivityMainBinding;
 import org.remain4life.mvvm.viewmodels.MainViewModel;
 import org.remain4life.mvvm.views.base.BaseActivity;
+import org.remain4life.mvvm.views.base.IMainNavigator;
 
 import java.util.Objects;
 

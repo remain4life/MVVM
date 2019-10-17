@@ -17,6 +17,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="SmallTitleTextView" parent="DefaultTextView">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="CardTextView" parent="DefaultTextView">
         <item name="android:textColor">@color/colorButtonText</item>
         <item name="android:textSize">16sp</item>
@@ -45,6 +49,10 @@
         <item name="cardElevation">4dp</item>
         <item name="android:paddingBottom">16dp</item>
         <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="ProgressCircle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
 </resources>
