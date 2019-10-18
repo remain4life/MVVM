@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import org.remain4life.mvvm.BR;
 import org.remain4life.mvvm.R;
@@ -67,5 +70,22 @@ public class PhotoViewerActivity extends BaseActivity<ActivityPhotoViewerBinding
         Objects.requireNonNull(
                 getSupportActionBar()
         ).setTitle(getString(R.string.app_name) + " " + title);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.backToMain) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

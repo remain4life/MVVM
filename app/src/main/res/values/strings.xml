@@ -17,4 +17,5 @@
     <string name="creator_about">Android developer</string>
     <string name="creator_email">remain4life@gmail.com</string>
     <string name="creator_button">Just click button :)</string>
+    <string name="back">Back</string>
 </resources>
