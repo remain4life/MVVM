@@ -54,4 +54,16 @@ public class Links extends BaseObservable implements Parcelable {
             return new Links[size];
         }
     };
+
+    public Uri getSelf() {
+        return self;
+    }
+
+    public Uri getDownload() {
+        return download;
+    }
+
+    public Uri getHtml() {
+        return html;
+    }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.PhotoViewerActivity">
+
+    <data>
+        <import
+            type="org.remain4life.mvvm.R"/>
+        <import
+            type="android.text.method.LinkMovementMethod"/>
+        <variable
+            name="photoViewerViewModel"
+            type="org.remain4life.mvvm.viewmodels.PhotoViewerViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGray">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            app:cardPreventCornerOverlap="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/photoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/desc_photo_regular"
+                    app:imageUrl="@{photoViewerViewModel.photo.photoUrls.regular}" />
+
+                <TextView
+                    android:id="@+id/photoSignature"
+                    style="@style/PhotoTextView"
+                    android:text="@{photoViewerViewModel.photo.getPhotoSignature()}"
+                    app:movementMethod="@{LinkMovementMethod.instance}"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="12dp"/>
+
+                <ImageView
+                    android:id="@+id/favouriteView"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="top|start"
+                    android:layout_margin="12dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/desc_photo_regular"
+                    android:onClick="@{() -> photoViewerViewModel.addToFavourites()}"
+                    android:src="@{photoViewerViewModel.photo.favourite ? @drawable/ic_favourite : @drawable/ic_no_favourite, default = @drawable/ic_no_favourite}"/>
+
+            </FrameLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

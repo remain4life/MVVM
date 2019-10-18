@@ -6,7 +6,10 @@
 
     <color name="colorPrimaryText">#000000</color>
     <color name="colorButtonText">#FFFFFF</color>
+    <color name="colorWhite">#FFFFFF</color>
     <color name="colorDarkGray">#A0A0A0</color>
+    <color name="colorGray">#C0C0C0</color>
+    <color name="colorLightGray">#D5D5D5</color>
     <color name="colorButton">@color/colorPrimary</color>
     <color name="colorButtonPressed">@color/colorPrimaryDark</color>
     <color name="colorTransparentButton">#2B000000</color>

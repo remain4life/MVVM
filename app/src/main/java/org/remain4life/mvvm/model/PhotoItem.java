@@ -5,6 +5,9 @@ import android.databinding.Bindable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.text.Html;
+import android.text.Spanned;
+import org.remain4life.mvvm.BR;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -17,8 +20,9 @@ public class PhotoItem extends BaseObservable implements Parcelable {
     private String description;
     @SerializedName(PhotosQuery.PQ_ALT_DESCRIPTION)
     private String altDescription;
-    @SerializedName(PhotosQuery.PQ_IS_LIKED)
-    private boolean isLiked;
+
+    // local property
+    private boolean isFavourite;
 
     @SerializedName(PhotosQuery.PQ_URLS)
     private PhotoUrls photoUrls;
@@ -33,7 +37,7 @@ public class PhotoItem extends BaseObservable implements Parcelable {
         this.id = id;
         this.description = description;
         this.altDescription = altDescription;
-        this.isLiked = isLiked;
+        this.isFavourite = isLiked;
         this.photoUrls = photoUrls;
         this.links = links;
         this.author = author;
@@ -44,7 +48,7 @@ public class PhotoItem extends BaseObservable implements Parcelable {
         id = in.readString();
         description = in.readString();
         altDescription = in.readString();
-        isLiked = in.readByte() != 0;
+        isFavourite = in.readByte() != 0;
         photoUrls = in.readParcelable(PhotoUrls.class.getClassLoader());
         links = in.readParcelable(Links.class.getClassLoader());
         author = in.readParcelable(User.class.getClassLoader());
@@ -55,7 +59,7 @@ public class PhotoItem extends BaseObservable implements Parcelable {
         dest.writeString(id);
         dest.writeString(description);
         dest.writeString(altDescription);
-        dest.writeByte((byte) (isLiked ? 1 : 0));
+        dest.writeByte((byte) (isFavourite ? 1 : 0));
         dest.writeParcelable(photoUrls, flags);
         dest.writeParcelable(links, flags);
         dest.writeParcelable(author, flags);
@@ -83,6 +87,16 @@ public class PhotoItem extends BaseObservable implements Parcelable {
         return photoUrls;
     }
 
+    @Bindable
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
+        notifyPropertyChanged(BR.favourite);
+    }
+
     @NonNull
     @Override
     public String toString() {
@@ -90,6 +104,14 @@ public class PhotoItem extends BaseObservable implements Parcelable {
                 "thumb='" + photoUrls.getThumb() + '\'' +
                 ", description='" + description + '\'' +
                 ", altDescription='" + altDescription + '\'' +
+                ", isFavourite='" + isFavourite + '\'' +
                 '}';
+    }
+
+    public Spanned getPhotoSignature() {
+        String html = "Photo by <a href=\"" + author.getUserLinks().getHtml() + "\">" + author.getName() + "</a> from " +
+                "<a href=\"https://unsplash.com\">Unsplash</a>";
+
+        return Html.fromHtml(html);
     }
 }

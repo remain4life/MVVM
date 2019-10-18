@@ -58,4 +58,20 @@ public class User extends BaseObservable implements Parcelable {
             return new User[size];
         }
     };
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Links getUserLinks() {
+        return userLinks;
+    }
 }

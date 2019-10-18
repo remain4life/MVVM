@@ -25,7 +25,10 @@
             app:imageUrl="@{photosItem.photoUrls.thumb}"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> photosViewHolder.onImage()}"/>
 
     </android.support.v7.widget.CardView>
 </layout>

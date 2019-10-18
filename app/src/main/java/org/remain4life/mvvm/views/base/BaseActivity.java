@@ -13,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import org.remain4life.mvvm.R;
 import org.remain4life.mvvm.viewmodels.base.BaseViewModel;
 
-public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseViewModel> extends AppCompatActivity{
     public VM viewModel;
     protected B binding;
 
@@ -38,10 +38,6 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
         this.viewModel = viewModel == null ? onCreateViewModel(savedInstanceState) : viewModel;
         binding.setVariable(getVariable(), viewModel);
         binding.executePendingBindings();
-    }
-
-    public B getBinding() {
-        return binding;
     }
 
     public void setViewModel(VM viewModel) {

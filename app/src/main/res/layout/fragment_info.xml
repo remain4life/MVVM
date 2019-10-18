@@ -13,7 +13,8 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorGray">
 
         <TextView
             android:id="@+id/nameTextView"
@@ -28,7 +29,7 @@
 
         <TextView
             android:id="@+id/aboutTextView"
-            style="@style/DefaultTextView"
+            style="@style/SmallTitleTextView"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
@@ -39,7 +40,7 @@
 
         <TextView
             android:id="@+id/emailTextView"
-            style="@style/DefaultTextView"
+            style="@style/SmallTitleTextView"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"

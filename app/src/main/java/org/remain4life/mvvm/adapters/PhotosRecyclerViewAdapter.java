@@ -1,5 +1,6 @@
 package org.remain4life.mvvm.adapters;
 
+import android.content.Context;
 import android.databinding.Bindable;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
@@ -18,6 +19,7 @@ import org.remain4life.mvvm.databinding.PhotosItemBinding;
 import org.remain4life.mvvm.helpers.AdapterOnListChangedCallback;
 import org.remain4life.mvvm.helpers.Application;
 import org.remain4life.mvvm.model.PhotoItem;
+import org.remain4life.mvvm.views.PhotoViewerActivity;
 
 import java.util.List;
 
@@ -25,8 +27,13 @@ public class PhotosRecyclerViewAdapter
         extends RecyclerView.Adapter<PhotosRecyclerViewAdapter.PhotosViewHolder>
         implements IListAdapter<PhotoItem>{
 
+    private Context context;
     private List<PhotoItem> data;
     private final ObservableList.OnListChangedCallback<ObservableList<PhotoItem>> onListChangedCallback = new AdapterOnListChangedCallback<>(this);
+
+    public PhotosRecyclerViewAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -59,8 +66,15 @@ public class PhotosRecyclerViewAdapter
             photosItemBinding.setPhotosViewHolder(this);
         }
 
+        /**
+         * Called on image clicked to open activity with regular image size
+         */
         public void onImage() {
-            // on image click
+            // TODO load favourites from DB
+
+            context.startActivity(
+                    PhotoViewerActivity.createIntent(context, item)
+            );
         }
 
         @Bindable
@@ -68,11 +82,11 @@ public class PhotosRecyclerViewAdapter
             return item;
         }
 
-        @CallSuper
         public void setItem(PhotoItem item) {
             this.item = item;
             photosItemBinding.setPhotosItem(item);
             notifyPropertyChanged(BR.photosItem);
+            notifyPropertyChanged(BR.item);
 
             photosItemBinding.executePendingBindings();
         }
