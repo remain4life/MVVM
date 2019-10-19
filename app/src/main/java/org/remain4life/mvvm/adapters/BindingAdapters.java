@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.annotation.ColorInt;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.ImageViewCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -86,6 +87,11 @@ public class BindingAdapters {
     @BindingAdapter("data")
     public static <T> void setAdapterData(BaseRecyclerView recyclerView, List<T> data) {
         recyclerView.setData(data);
+    }
+
+    @BindingAdapter("loadingColor")
+    public static void setColorSchemeColors(SwipeRefreshLayout layout, @ColorInt int color) {
+        layout.setColorSchemeColors(color);
     }
 }
 

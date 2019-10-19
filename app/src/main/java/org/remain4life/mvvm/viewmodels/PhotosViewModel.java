@@ -61,7 +61,8 @@ public class PhotosViewModel extends BaseViewModel<IPhotosNavigator> {
                                     Log.d(Application.LOG_TAG, "Data loaded from server: " + tempItems);
                                 }
 
-                                if (items == null) {
+                                // clear items on reload
+                                if (items == null || items.size() >= PHOTOS_NUMBER_TO_LOAD) {
                                     items = new ArrayList<>();
                                 }
 

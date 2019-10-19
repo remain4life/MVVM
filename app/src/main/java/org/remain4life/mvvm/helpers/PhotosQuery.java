@@ -275,7 +275,6 @@ public class PhotosQuery {
     public static final String PQ_ID = "id";
     public static final String PQ_DESCRIPTION = "description";
     public static final String PQ_ALT_DESCRIPTION = "alt_description";
-    public static final String PQ_IS_LIKED = "liked_by_user";
     public static final String PQ_URLS = "urls";
     public static final String PQ_URLS_THUMB = "thumb";
     public static final String PQ_URLS_REGULAR = "regular";
