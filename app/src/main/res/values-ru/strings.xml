@@ -1,23 +1,23 @@
 <resources>
     <string name="app_name">MVVM</string>
-    <string name="title_favourites">Favourites</string>
-    <string name="title_favourites_loaded">Favourites\ntotal: %1$s</string>
-    <string name="title_photos">Photos</string>
-    <string name="title_photo_viewer">Photo Viewer</string>
-    <string name="title_photos_loaded">Photos from https://unsplash.com,\nloaded: %1$s from %2$s</string>
-    <string name="title_info">Info</string>
+    <string name="title_favourites">Избранное</string>
+    <string name="title_favourites_loaded">Избранное\nвсего: %1$s</string>
+    <string name="title_photos">Фото</string>
+    <string name="title_photo_viewer">Просмотр фото</string>
+    <string name="title_photos_loaded">Фото от https://unsplash.com,\nзагружено: %1$s из %2$s</string>
+    <string name="title_info">Информация</string>
 
-    <string name="desc_photo_thumb">Photo thumb</string>
-    <string name="desc_photo_regular">Photo regular</string>
+    <string name="desc_photo_thumb">Фото превью</string>
+    <string name="desc_photo_regular">Фото стандарт</string>
 
-    <string name="error">Error</string>
-    <string name="error_no_connection">No connection</string>
+    <string name="error">Ошибка</string>
+    <string name="error_no_connection">Нет соединения</string>
 
-    <string name="creator_name">Alexander Marchenko</string>
-    <string name="creator_about">Android developer</string>
+    <string name="creator_name">Марченко Александр Юрьевич</string>
+    <string name="creator_about">Android-разработчик</string>
     <string name="creator_email">remain4life@gmail.com</string>
-    <string name="creator_button">Show on map</string>
-    <string name="creator_dependencies_title">Used libs:</string>
+    <string name="creator_button">Показать на карте</string>
+    <string name="creator_dependencies_title">Использованные библиотеки:</string>
     <string name="creator_dependencies">com.android.support:appcompat-v7:28.0.0
 \ncom.android.support:cardview-v7:28.0.0
 \ncom.android.support:design:28.0.0
@@ -42,5 +42,5 @@
 \nandroidTest com.android.support.test:runner:1.0.2
 \nandroidTest com.android.support.test.espresso:espresso-core:3.0.2
      </string>
-    <string name="back">Back</string>
+    <string name="back">Yfpfl</string>
 </resources>

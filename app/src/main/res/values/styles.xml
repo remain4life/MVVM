@@ -46,6 +46,15 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="GreyTextView">
+        <item name="android:textColor">@color/colorDarkGray</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left|top</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="PhotoTextView" parent="DefaultTextView">
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">12sp</item>

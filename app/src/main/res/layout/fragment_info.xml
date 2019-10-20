@@ -5,6 +5,8 @@
     tools:context=".views.InfoFragment">
 
     <data>
+        <import
+            type="android.text.method.ScrollingMovementMethod"/>
         <variable
             name="infoViewModel"
             type="org.remain4life.mvvm.viewmodels.InfoViewModel" />
@@ -20,7 +22,7 @@
             android:id="@+id/nameTextView"
             style="@style/TitleTextView"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="@string/creator_name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +33,7 @@
             android:id="@+id/aboutTextView"
             style="@style/SmallTitleTextView"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@string/creator_about"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +74,47 @@
 
             </FrameLayout>
 
+
+
         </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/dependenciesTitle"
+            style="@style/SmallTitleTextView"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/creator_dependencies_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardContinue" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            android:layout_gravity="center"
+            app:cardPreventCornerOverlap="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dependenciesTitle"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                style="@style/GreyTextView"
+                android:maxLines="@{Integer.MAX_VALUE}"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:scrollbars="vertical"
+                app:movementMethod="@{ScrollingMovementMethod.instance}"
+                android:text="@string/creator_dependencies" />
+
+        </android.support.v7.widget.CardView>
+
 
     </android.support.constraint.ConstraintLayout>
 </layout>
