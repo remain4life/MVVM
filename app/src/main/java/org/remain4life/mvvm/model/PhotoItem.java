@@ -114,4 +114,24 @@ public class PhotoItem extends BaseObservable implements Parcelable {
 
         return Html.fromHtml(html);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAltDescription() {
+        return altDescription;
+    }
+
+    public Links getLinks() {
+        return links;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
 }

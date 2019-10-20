@@ -22,8 +22,6 @@ import java.util.Objects;
 
 public class PhotosFragment extends BaseFragment<FragmentPhotosBinding, PhotosViewModel> implements IPhotosNavigator {
 
-    private PhotosRecyclerViewAdapter adapter;
-
     @Override
     public PhotosViewModel onCreateViewModel(@Nullable Bundle savedInstanceState) {
         return new PhotosViewModel(Objects.requireNonNull(getActivity()), this);
@@ -41,16 +39,9 @@ public class PhotosFragment extends BaseFragment<FragmentPhotosBinding, PhotosVi
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        adapter = new PhotosRecyclerViewAdapter(getActivity());
+        PhotosRecyclerViewAdapter adapter = new PhotosRecyclerViewAdapter(getActivity());
         binding.recyclerView.setAdapter(adapter);
 
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
-    public void updateAdapterData(List<PhotoItem> items) {
-        if (adapter != null) {
-            adapter.setData(items);
-        }
     }
 }

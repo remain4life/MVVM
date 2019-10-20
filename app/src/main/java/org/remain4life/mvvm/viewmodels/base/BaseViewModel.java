@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.remain4life.mvvm.R;
 import org.remain4life.mvvm.BR;
 import org.remain4life.mvvm.helpers.ResponseException;
 import org.remain4life.mvvm.helpers.StatusResponse;
 import org.remain4life.mvvm.views.base.INavigator;
+
+import java.util.Arrays;
 
 import io.reactivex.disposables.Disposable;
 
@@ -57,6 +60,7 @@ public abstract class BaseViewModel<N extends INavigator> extends BaseObservable
         }
 
         Log.e(ERROR_TAG, "Error: " + message);
+        Log.e(ERROR_TAG, "Stacktrace: " + Arrays.toString(throwable.getStackTrace()));
         onError(message);
     }
 
@@ -120,5 +124,9 @@ public abstract class BaseViewModel<N extends INavigator> extends BaseObservable
     }
 
     public void onDestroyView() {
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 }

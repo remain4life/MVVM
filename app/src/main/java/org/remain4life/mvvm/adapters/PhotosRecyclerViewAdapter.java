@@ -1,5 +1,6 @@
 package org.remain4life.mvvm.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.databinding.Bindable;
 import android.databinding.DataBindingUtil;
@@ -18,14 +19,22 @@ import org.remain4life.mvvm.BuildConfig;
 import org.remain4life.mvvm.databinding.PhotosItemBinding;
 import org.remain4life.mvvm.helpers.AdapterOnListChangedCallback;
 import org.remain4life.mvvm.helpers.Application;
+import org.remain4life.mvvm.helpers.Constants;
 import org.remain4life.mvvm.model.PhotoItem;
+import org.remain4life.mvvm.model.PhotoRepository;
 import org.remain4life.mvvm.views.PhotoViewerActivity;
 
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+import static org.remain4life.mvvm.helpers.Constants.APP_TAG;
+import static org.remain4life.mvvm.helpers.Constants.DB_TAG;
+
 public class PhotosRecyclerViewAdapter
         extends RecyclerView.Adapter<PhotosRecyclerViewAdapter.PhotosViewHolder>
-        implements IListAdapter<PhotoItem>{
+        implements IListAdapter<PhotoItem> {
 
     private Context context;
     private List<PhotoItem> data;
@@ -69,12 +78,37 @@ public class PhotosRecyclerViewAdapter
         /**
          * Called on image clicked to open activity with regular image size
          */
+        @SuppressLint("CheckResult")
         public void onImage() {
-            // TODO load favourites from DB
+            if (BuildConfig.DEBUG) {
+                Log.d(APP_TAG, "-> Clicked on image " + item.getId() + ", author " + item.getAuthor().getName());
+            }
 
-            context.startActivity(
-                    PhotoViewerActivity.createIntent(context, item)
-            );
+            PhotoRepository.getInstance()
+                    .getPhotoFromDB(item)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(photoItemEntity -> {
+                                if (BuildConfig.DEBUG) {
+                                    Log.d(DB_TAG, "-> Photo loaded from DB: " + photoItemEntity.serverId + ", isFavourite = " + photoItemEntity.isFavourite);
+                                }
+
+                                if (photoItemEntity.isFavourite) {
+                                    item.setFavourite(true);
+                                } else {
+                                    item.setFavourite(false);
+                                }
+
+                                context.startActivity(
+                                        PhotoViewerActivity.createIntent(context, item)
+                                );
+
+
+                            },
+                            throwable -> Log.e(Constants.ERROR_TAG, throwable.toString())
+                    );
+
+
         }
 
         @Bindable
@@ -114,7 +148,7 @@ public class PhotosRecyclerViewAdapter
     @Override
     public void setData(List<PhotoItem> data) {
         if (BuildConfig.DEBUG) {
-            Log.d(Application.LOG_TAG, "Set data to adapter: " + data);
+            Log.d(APP_TAG, "Set data to adapter: " + data);
         }
 
         if (this.data == data) {
@@ -122,11 +156,11 @@ public class PhotosRecyclerViewAdapter
         }
 
         if (this.data instanceof ObservableList) {
-            ((ObservableList<PhotoItem>)this.data).removeOnListChangedCallback(onListChangedCallback);
+            ((ObservableList<PhotoItem>) this.data).removeOnListChangedCallback(onListChangedCallback);
         }
         this.data = data;
         if (this.data instanceof ObservableList) {
-            ((ObservableList<PhotoItem>)this.data).addOnListChangedCallback(onListChangedCallback);
+            ((ObservableList<PhotoItem>) this.data).addOnListChangedCallback(onListChangedCallback);
         }
         notifyDataSetChanged();
     }

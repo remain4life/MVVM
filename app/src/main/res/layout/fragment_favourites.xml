@@ -10,23 +10,42 @@
             type="org.remain4life.mvvm.viewmodels.FavouritesViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/container"
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorGray">
+        app:onRefreshListener="@{() -> favViewModel.reloadFavourites()}"
+        app:refreshing="@{favViewModel.isLoading}"
+        app:loadingColor="@{@color/colorPrimary}">
 
-        <TextView
-            android:id="@+id/titleTextView"
-            style="@style/TitleTextView"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/title_favourites"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorGray">
 
+            <TextView
+                android:id="@+id/titleTextView"
+                style="@style/SmallTitleTextView"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@{@string/title_favourites_loaded(String.valueOf(favViewModel.photoItems.size()))}"
+                android:lineSpacingMultiplier="1.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+            <org.remain4life.mvvm.views.GridRecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="@{favViewModel.photoItems != null}"
+                app:data="@{favViewModel.photoItems}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 </layout>

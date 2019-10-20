@@ -60,4 +60,12 @@ public class PhotoUrls extends BaseObservable implements Parcelable {
     public Uri getRegular() {
         return regular;
     }
+
+    @Override
+    public String toString() {
+        return "PhotoUrls{" +
+                "thumb=" + thumb +
+                ", regular=" + regular +
+                '}';
+    }
 }

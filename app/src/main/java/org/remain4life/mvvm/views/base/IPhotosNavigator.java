@@ -5,5 +5,4 @@ import org.remain4life.mvvm.model.PhotoItem;
 import java.util.List;
 
 public interface IPhotosNavigator extends INavigator {
-    void updateAdapterData(List<PhotoItem> items);
 }

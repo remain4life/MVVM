@@ -7,6 +7,7 @@ import android.support.multidex.MultiDex;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.remain4life.mvvm.db.AppDatabase;
 import org.remain4life.mvvm.helpers.gson.UriGsonTypeAdapter;
 
 public class Application extends android.app.Application {
@@ -14,9 +15,9 @@ public class Application extends android.app.Application {
             .registerTypeAdapter(Uri.class, new UriGsonTypeAdapter())
             .create();
 
-    public static final String LOG_TAG = "MVVM_tag";
-
     private static Application app;
+
+    private AppDatabase database;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -28,9 +29,15 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         app = this;
+        // init DB
+        database = AppDatabase.getInstance(this);
     }
 
     public static Application getApplication(){
         return app;
+    }
+
+    public AppDatabase getDatabase() {
+        return database;
     }
 }
