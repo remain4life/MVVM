@@ -1,5 +1,6 @@
 package org.remain4life.mvvm.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class InfoFragment extends BaseFragment<FragmentInfoBinding, InfoViewMode
 
     @Override
     public void onButtonClicked() {
-        Toast.makeText(getContext(), "Button clicked", Toast.LENGTH_SHORT).show();
+        Intent mapIntent = MapActivity.createIntent(getContext());
+        startActivity(mapIntent);
     }
 }

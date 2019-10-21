@@ -6,6 +6,7 @@
     <string name="title_photo_viewer">Photo Viewer</string>
     <string name="title_photos_loaded">Photos from https://unsplash.com,\nloaded: %1$s from %2$s</string>
     <string name="title_info">Info</string>
+    <string name="title_map">Map</string>
 
     <string name="desc_photo_thumb">Photo thumb</string>
     <string name="desc_photo_regular">Photo regular</string>
@@ -36,8 +37,10 @@
 \ncom.squareup.picasso:picasso:2.71828
 \ncom.android.support:support-v4:28.0.0
 \nandroid.arch.persistence.room:runtime:1.1.1
-\nannotationProcessor android.arch.persistence.room:\ncompiler:1.1.1
+\nannotationProcessor android.arch.persistence.room:compiler:1.1.1
 \nandroid.arch.persistence.room:rxjava2:1.1.1
+\ncom.yandex.android:mapkit:3.4.0
+\ncom.google.android.gms:play-services-location:16.0.0
 \ntest junit:junit:4.12
 \nandroidTest com.android.support.test:runner:1.0.2
 \nandroidTest com.android.support.test.espresso:espresso-core:3.0.2

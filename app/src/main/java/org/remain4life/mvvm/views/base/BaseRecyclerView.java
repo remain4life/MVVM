@@ -8,7 +8,6 @@ import android.util.AttributeSet;
 import org.remain4life.mvvm.adapters.IListAdapter;
 
 import java.util.List;
-import java.util.Objects;
 
 public abstract class BaseRecyclerView extends RecyclerView {
     public BaseRecyclerView(Context context) {
