@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/card_margin"
             app:cardPreventCornerOverlap="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/card_margin"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:contentDescription="@string/desc_photo_regular"
@@ -52,14 +52,14 @@
                     app:movementMethod="@{LinkMovementMethod.instance}"
                     android:clickable="true"
                     android:focusable="true"
-                    android:padding="12dp"/>
+                    android:padding="@dimen/text_padding"/>
 
                 <ImageView
                     android:id="@+id/favouriteView"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="top|start"
-                    android:layout_margin="12dp"
+                    android:layout_margin="@dimen/text_padding"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     android:contentDescription="@string/desc_photo_regular"
