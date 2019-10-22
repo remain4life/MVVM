@@ -49,7 +49,7 @@ public class PhotosViewModel extends BasePhotoModel<IPhotosNavigator> {
      */
     public void reloadAllPhotos() {
         photosLoaded = 0;
-        setPhotoItems(new ArrayList<>());
+        photoItems = new ArrayList<>();
         if (ConnectivityStatus.isConnected(context)) {
             photoRepo.loadPhotos(this, true);
         } else {

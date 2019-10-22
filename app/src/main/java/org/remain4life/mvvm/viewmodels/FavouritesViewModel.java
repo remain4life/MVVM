@@ -26,7 +26,7 @@ public class FavouritesViewModel extends BasePhotoModel<IFavouritesNavigator> {
      */
     public void reloadFavourites() {
         photosLoaded = 0;
-        setPhotoItems(new ArrayList<>());
+        photoItems = new ArrayList<>();
         photoRepo.loadPhotoItemsFromDB(this, true);
     }
 

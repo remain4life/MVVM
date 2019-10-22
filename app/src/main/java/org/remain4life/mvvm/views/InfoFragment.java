@@ -3,7 +3,6 @@ package org.remain4life.mvvm.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 
 import org.remain4life.mvvm.BR;
 import org.remain4life.mvvm.R;

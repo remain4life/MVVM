@@ -164,26 +164,38 @@ public class PhotoRepository {
     }
 
     /**
-     * Clears DB from all photos except favourites and loads new items
+     * Clears DB from all photos except favourites (set them old) and loads new items
      * @param model BaseViewModel to update
      * @param photoItems PhotoItems to cache after cleaning
      */
     @SuppressLint("CheckResult")
     public void clearDbAndLoad(BaseViewModel model, List<PhotoItem> photoItems) {
+        // variable to cache results
+        final int[] results = new int[2];
         Observable.just(db)
                 .subscribeOn(Schedulers.io())
-                .map(db -> db.entitiesDao().removePhotos())
+                .map(db -> {
+                    results[0] = db.entitiesDao().removePhotos();
+                    return db;
+                })
+                .map(db -> {
+                    results[1] = db.entitiesDao().setPhotosOld();
+                    return db;
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> model.setLoading(true))
                 .doFinally(() -> model.setLoading(false))
-                .subscribe(removedNumber -> {
+                .subscribe(db -> {
                             if (BuildConfig.DEBUG) {
-                                Log.d(DB_TAG, "-> DB successfully cleared: " + removedNumber + " items");
+                                Log.d(DB_TAG, "-> DB successfully cleared: " + results[0] + " items, set old " + results[1]);
                             }
 
                             if (photoItems != null && !photoItems.isEmpty()) {
                                 loadPhotoItemsToDB(model, photoItems);
                             }
+
+                            // set existing favourites as old
+
                         },
                         throwable -> model.onError(throwable.toString())
                 );
