@@ -127,7 +127,7 @@ public class MapActivity extends BaseActivity<ActivityMapBinding, MapViewModel>
 
     @Override
     public MapViewModel onCreateViewModel(@Nullable Bundle savedInstanceState) {
-        return new MapViewModel(this, this);
+        return new MapViewModel(getApplicationContext(), this);
     }
 
     @Override

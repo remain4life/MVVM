@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MVVM</string>
+    <string name="app_name">PhotoLoader</string>
     <string name="title_favourites">Favourites</string>
     <string name="title_favourites_loaded">Favourites\ntotal: %1$s</string>
     <string name="title_photos">Photos</string>

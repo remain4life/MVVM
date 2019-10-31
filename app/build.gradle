@@ -56,7 +56,7 @@ dependencies {
         exclude group: 'com.android.support'
         exclude module: ['exifinterface', 'support-annotations']
     }
-    implementation 'com.android.support:support-v4:28.0.0'
+    implementation "com.android.support:support-v4:$supportVersion"
     implementation "android.arch.persistence.room:runtime:$roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
     implementation "android.arch.persistence.room:rxjava2:$roomVersion"

@@ -67,28 +67,6 @@ public class MapViewModel extends BaseViewModel<IMapNavigator> {
         };
     }
 
-    /*@SuppressLint("MissingPermission")
-    private void getLastLocation() {
-        fusedLocationProviderClient.getLastLocation()
-                .addOnCompleteListener(task -> {
-                    Point userPoint;
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        // update user location
-                        Location lastLocation = task.getResult();
-                        userPoint = new Point(lastLocation.getLatitude(), lastLocation.getLongitude());
-                        // cache location
-                        PreferencesCache.setLastLatitude(userPoint.getLatitude());
-                        PreferencesCache.setLastLongitude(userPoint.getLongitude());
-                    } else {
-                        // get cached data
-                        userPoint = new Point(PreferencesCache.getLastLatitude(), PreferencesCache.getLastLongitude());
-                    }
-
-                    navigator.updateUserLocation(userPoint);
-                });
-    }*/
-
-
     @SuppressLint("MissingPermission")
     private void registerLocationListener() {
         if (!isLocationListenerRegistered) {
@@ -111,7 +89,6 @@ public class MapViewModel extends BaseViewModel<IMapNavigator> {
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 initLocationData();
-               // getLastLocation();
                 registerLocationListener();
             }
         }

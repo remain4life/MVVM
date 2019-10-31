@@ -16,7 +16,7 @@ import java.util.Objects;
 public class InfoFragment extends BaseFragment<FragmentInfoBinding, InfoViewModel> implements IInfoNavigator {
     @Override
     public InfoViewModel onCreateViewModel(@Nullable Bundle savedInstanceState) {
-        return new InfoViewModel(Objects.requireNonNull(getActivity()), this);
+        return new InfoViewModel(Objects.requireNonNull(getContext()), this);
     }
 
     @Override

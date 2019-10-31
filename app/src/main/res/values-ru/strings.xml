@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MVVM</string>
+    <string name="app_name">PhotoLoader</string>
     <string name="title_favourites">Избранное</string>
     <string name="title_favourites_loaded">Избранное\nвсего: %1$s</string>
     <string name="title_photos">Фото</string>

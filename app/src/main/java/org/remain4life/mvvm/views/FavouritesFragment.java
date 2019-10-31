@@ -34,7 +34,7 @@ public class FavouritesFragment extends BaseFragment<FragmentFavouritesBinding, 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        PhotosRecyclerViewAdapter adapter = new PhotosRecyclerViewAdapter(getActivity());
+        PhotosRecyclerViewAdapter adapter = new PhotosRecyclerViewAdapter(getContext());
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setHasFixedSize(true);
 

@@ -58,7 +58,6 @@ public class PhotoRepository {
 
             PhotosQuery.loadPhotos(page, UNSPLASH_LOAD_LIMIT)
                     .subscribeOn(Schedulers.io())
-
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe(disposable -> model.setLoading(true))
                     .doFinally(() -> model.setLoading(false))

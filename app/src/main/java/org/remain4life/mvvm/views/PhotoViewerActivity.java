@@ -2,9 +2,8 @@ package org.remain4life.mvvm.views;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
+import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -45,7 +44,7 @@ public class PhotoViewerActivity extends BaseActivity<ActivityPhotoViewerBinding
 
     @Override
     public PhotoViewerViewModel onCreateViewModel(@Nullable Bundle savedInstanceState) {
-        return new PhotoViewerViewModel(this, this);
+        return new PhotoViewerViewModel(getApplicationContext(), this);
     }
 
     @Override

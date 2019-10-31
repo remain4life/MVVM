@@ -287,9 +287,9 @@ public class PhotosQuery {
     public static final String PQ_USER_NAME = "name";
     public static final String PQ_USER_LOCATION = "location";
 
-    public static final String PQ_CLIENT_ID = "client_id";
-    public static final String PQ_PAGE = "page";
-    public static final String PQ_PER_PAGE = "per_page";
+    private static final String PQ_CLIENT_ID = "client_id";
+    private static final String PQ_PAGE = "page";
+    private static final String PQ_PER_PAGE = "per_page";
 
 
     /**

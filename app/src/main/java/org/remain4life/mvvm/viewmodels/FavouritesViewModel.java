@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 
 import org.remain4life.mvvm.model.PhotoRepository;
 import org.remain4life.mvvm.viewmodels.base.BasePhotoModel;
-import org.remain4life.mvvm.viewmodels.base.BaseViewModel;
 import org.remain4life.mvvm.views.base.IFavouritesNavigator;
 
 import java.util.ArrayList;
