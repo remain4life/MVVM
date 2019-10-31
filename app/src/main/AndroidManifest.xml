@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.remain4life.mvvm">
+    package="org.remain4life.photoloader">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".helpers.Application"
+        android:name="org.remain4life.photoloader.helpers.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,14 +20,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity
-            android:name=".views.MapActivity"
+            android:name="org.remain4life.photoloader.views.MapActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".views.PhotoViewerActivity"
+            android:name="org.remain4life.photoloader.views.PhotoViewerActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".views.MainActivity"
+            android:name="org.remain4life.photoloader.views.MainActivity"
             android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait"
             android:label="@string/app_name"

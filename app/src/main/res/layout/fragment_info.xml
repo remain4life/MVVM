@@ -9,7 +9,7 @@
             type="android.text.method.ScrollingMovementMethod"/>
         <variable
             name="infoViewModel"
-            type="org.remain4life.mvvm.viewmodels.InfoViewModel" />
+            type="org.remain4life.photoloader.viewmodels.InfoViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

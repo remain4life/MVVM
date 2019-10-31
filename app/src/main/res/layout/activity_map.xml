@@ -7,7 +7,7 @@
     <data>
         <variable
             name="mapViewModel"
-            type="org.remain4life.mvvm.viewmodels.MapViewModel"/>
+            type="org.remain4life.photoloader.viewmodels.MapViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

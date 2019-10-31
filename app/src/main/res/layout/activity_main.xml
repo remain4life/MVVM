@@ -6,10 +6,10 @@
 
     <data>
         <import
-            type="org.remain4life.mvvm.R"/>
+            type="org.remain4life.photoloader.R"/>
         <variable
             name="mainViewModel"
-            type="org.remain4life.mvvm.viewmodels.MainViewModel"/>
+            type="org.remain4life.photoloader.viewmodels.MainViewModel"/>
     </data>
 
     <android.support.constraint.ConstraintLayout

@@ -5,10 +5,10 @@
     <data>
         <variable
             name="photosViewHolder"
-            type="org.remain4life.mvvm.adapters.PhotosRecyclerViewAdapter.PhotosViewHolder"/>
+            type="org.remain4life.photoloader.adapters.PhotosRecyclerViewAdapter.PhotosViewHolder"/>
         <variable
             name="photosItem"
-            type="org.remain4life.mvvm.model.PhotoItem"/>
+            type="org.remain4life.photoloader.model.PhotoItem"/>
     </data>
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

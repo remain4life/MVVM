@@ -45,5 +45,13 @@
 \nandroidTest com.android.support.test:runner:1.0.2
 \nandroidTest com.android.support.test.espresso:espresso-core:3.0.2
      </string>
-    <string name="back">Yfpfl</string>
+    <string name="back">Назад</string>
+    <string name="download_button">Загрузить</string>
+    <string name="download_title">Загрузка: %1$s из unsplash.com</string>
+    <string name="download_began">Загрузка %1$s начата</string>
+    <string name="download_completed">Загрузка %1$s завершена</string>
+    <string name="dialog_download_info">Изображение сохранено по адресу</string>
+    <string name="dialog_download_success">Успешно загружено!</string>
+    <string name="no_write_permissions">Нет полномочий сохранить файл!</string>
+    <string name="permissions_granted">Полномочия получены, можно загружать изображения</string>
 </resources>

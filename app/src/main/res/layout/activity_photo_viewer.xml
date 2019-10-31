@@ -6,69 +6,105 @@
 
     <data>
         <import
-            type="org.remain4life.mvvm.R"/>
+            type="org.remain4life.photoloader.R"/>
         <import
             type="android.text.method.LinkMovementMethod"/>
         <variable
             name="photoViewerViewModel"
-            type="org.remain4life.mvvm.viewmodels.PhotoViewerViewModel"/>
+            type="org.remain4life.photoloader.viewmodels.PhotoViewerViewModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorGray">
 
-        <android.support.v7.widget.CardView
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/card_margin"
-            app:cardPreventCornerOverlap="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-            <FrameLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardPicture"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/card_margin"
+                app:cardPreventCornerOverlap="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/photoView"
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/photoView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/card_margin"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc_photo_regular"
+                        android:scaleType="fitCenter"
+                        app:imageUrl="@{photoViewerViewModel.photo.photoUrls.regular}" />
+
+                    <TextView
+                        android:id="@+id/photoSignature"
+                        style="@style/PhotoTextView"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="@dimen/text_padding"
+                        android:text="@{photoViewerViewModel.photo.getPhotoSignature()}"
+                        app:movementMethod="@{LinkMovementMethod.instance}" />
+
+                    <ImageView
+                        android:id="@+id/favouriteView"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="top|start"
+                        android:layout_margin="@dimen/text_padding"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/desc_photo_regular"
+                        android:onClick="@{() -> photoViewerViewModel.addToFavourites()}"
+                        android:scaleType="centerCrop"
+                        android:src="@{photoViewerViewModel.photo.favourite ? @drawable/ic_favourite : @drawable/ic_no_favourite, default = @drawable/ic_no_favourite}" />
+
+                </FrameLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardDownload"
+                style="@style/CardViewActionButton"
+                android:layout_margin="@dimen/card_margin_big"
+                android:onClick="@{() -> photoViewerViewModel.onDownload()}"
+                android:paddingBottom="@dimen/vertical_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardPicture"
+                app:layout_constraintVertical_bias="0.0">
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/card_margin"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:contentDescription="@string/desc_photo_regular"
-                    app:imageUrl="@{photoViewerViewModel.photo.photoUrls.regular}" />
+                    android:background="@drawable/btn_selector"
+                    android:paddingLeft="@dimen/card_margin_big"
+                    android:paddingRight="@dimen/card_margin_big">
 
-                <TextView
-                    android:id="@+id/photoSignature"
-                    style="@style/PhotoTextView"
-                    android:text="@{photoViewerViewModel.photo.getPhotoSignature()}"
-                    app:movementMethod="@{LinkMovementMethod.instance}"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="@dimen/text_padding"/>
+                    <TextView
+                        style="@style/CardTextView"
+                        android:text="@string/download_button" />
 
-                <ImageView
-                    android:id="@+id/favouriteView"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="top|start"
-                    android:layout_margin="@dimen/text_padding"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/desc_photo_regular"
-                    android:onClick="@{() -> photoViewerViewModel.addToFavourites()}"
-                    android:src="@{photoViewerViewModel.photo.favourite ? @drawable/ic_favourite : @drawable/ic_no_favourite, default = @drawable/ic_no_favourite}"/>
+                </FrameLayout>
 
-            </FrameLayout>
 
-        </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>
 
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+
 </layout>

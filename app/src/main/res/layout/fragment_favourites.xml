@@ -7,7 +7,7 @@
     <data>
         <variable
             name="favViewModel"
-            type="org.remain4life.mvvm.viewmodels.FavouritesViewModel" />
+            type="org.remain4life.photoloader.viewmodels.FavouritesViewModel" />
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -33,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <org.remain4life.mvvm.views.GridRecyclerView
+            <org.remain4life.photoloader.views.GridRecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
