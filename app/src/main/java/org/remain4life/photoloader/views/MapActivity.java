@@ -5,19 +5,35 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
+import com.yandex.mapkit.RequestPoint;
+import com.yandex.mapkit.RequestPointType;
 import com.yandex.mapkit.geometry.BoundingBox;
 import com.yandex.mapkit.geometry.Point;
+import com.yandex.mapkit.geometry.Polyline;
+import com.yandex.mapkit.geometry.SubpolylineHelper;
 import com.yandex.mapkit.map.CameraPosition;
 import com.yandex.mapkit.map.PlacemarkMapObject;
+import com.yandex.mapkit.map.PolylineMapObject;
+import com.yandex.mapkit.transport.TransportFactory;
+import com.yandex.mapkit.transport.masstransit.MasstransitOptions;
+import com.yandex.mapkit.transport.masstransit.MasstransitRouter;
+import com.yandex.mapkit.transport.masstransit.Route;
+import com.yandex.mapkit.transport.masstransit.Section;
+import com.yandex.mapkit.transport.masstransit.SectionMetadata;
+import com.yandex.mapkit.transport.masstransit.Session;
+import com.yandex.mapkit.transport.masstransit.TimeOptions;
+import com.yandex.runtime.Error;
 import com.yandex.runtime.image.ImageProvider;
 
 import org.remain4life.photoloader.BR;
@@ -33,7 +49,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MapActivity extends BaseActivity<ActivityMapBinding, MapViewModel>
-        implements IMapNavigator {
+        implements IMapNavigator, Session.RouteListener {
 
     public static final int REQUEST_PERMISSION_LOCATION = 0;
     // Simferopol
@@ -108,11 +124,30 @@ public class MapActivity extends BaseActivity<ActivityMapBinding, MapViewModel>
 
             // add markers
             PlacemarkMapObject creatorPlacemark = binding.mapView.getMap().getMapObjects().addPlacemark(CREATOR_POINT, creatorMarker);
+            creatorPlacemark.addTapListener((mapObject, point) -> {
+                Toast.makeText(getApplicationContext(), R.string.map_creator_location, Toast.LENGTH_LONG).show();
+                return true;
+            });
             markers.add(creatorPlacemark);
             if (userPoint != null) {
                 PlacemarkMapObject userPlacemark = binding.mapView.getMap().getMapObjects().addPlacemark(userPoint, userMarker);
+                userPlacemark.addTapListener((mapObject, point) -> {
+                    Toast.makeText(getApplicationContext(), R.string.map_user_location, Toast.LENGTH_LONG).show();
+                    return true;
+                });
                 markers.add(userPlacemark);
             }
+
+            // create route
+            MasstransitOptions options = new MasstransitOptions(
+                    new ArrayList<>(),
+                    new ArrayList<>(),
+                    new TimeOptions());
+            List<RequestPoint> points = new ArrayList<RequestPoint>();
+            points.add(new RequestPoint(userPoint, RequestPointType.WAYPOINT, null));
+            points.add(new RequestPoint(CREATOR_POINT, RequestPointType.WAYPOINT, null));
+            MasstransitRouter mtRouter = TransportFactory.getInstance().createMasstransitRouter();
+            mtRouter.requestRoutes(points, options, this);
 
             updateCamera();
         }
@@ -122,12 +157,13 @@ public class MapActivity extends BaseActivity<ActivityMapBinding, MapViewModel>
     public void bind(Bundle savedInstanceState) {
         MapKitFactory.setApiKey(getString(R.string.map_key));
         MapKitFactory.initialize(this);
+        TransportFactory.initialize(this);
         super.bind(savedInstanceState);
     }
 
     @Override
     public MapViewModel onCreateViewModel(@Nullable Bundle savedInstanceState) {
-        return new MapViewModel(getApplicationContext(), this);
+        return new MapViewModel(this, this);
     }
 
     @Override
@@ -182,5 +218,32 @@ public class MapActivity extends BaseActivity<ActivityMapBinding, MapViewModel>
         return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
-}
 
+    @Override
+    public void onMasstransitRoutes(@NonNull List<Route> routes) {
+        // we consider first alternative route only
+        if (routes.size() > 0) {
+            // draw route
+            for (Section section : routes.get(0).getSections()) {
+                drawSection(
+                        section.getMetadata().getData(),
+                        SubpolylineHelper.subpolyline(
+                                routes.get(0).getGeometry(), section.getGeometry()));
+            }
+        }
+    }
+
+    @Override
+    public void onMasstransitRoutesError(@NonNull Error error) {
+        onError(error.toString());
+    }
+
+    private void drawSection(SectionMetadata.SectionData data,
+                             Polyline geometry) {
+        // Draw a section polyline on a map
+        // Set its color depending on the information which the section contains
+        PolylineMapObject polylineMapObject = binding.mapView.getMap().getMapObjects().addCollection().addPolyline(geometry);
+        // draw transport lines in primary color
+        polylineMapObject.setStrokeColor(ContextCompat.getColor(getApplicationContext(), R.color.colorRoute));
+    }
+}

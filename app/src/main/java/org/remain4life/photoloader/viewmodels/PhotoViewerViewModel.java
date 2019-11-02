@@ -128,7 +128,7 @@ public class PhotoViewerViewModel extends BaseViewModel<IPhotoViewerNavigator> {
             // permissions granted
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //Toast.makeText(context, context.getString(R.string.permissions_granted), Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, R.string.permissions_granted, Toast.LENGTH_LONG).show();
                 downloadPicture();
             }
         }

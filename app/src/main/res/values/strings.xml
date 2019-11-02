@@ -19,7 +19,7 @@
     <string name="creator_email">remain4life@gmail.com</string>
     <string name="creator_button">Show on map</string>
     <string name="creator_dependencies_title">Used libs:</string>
-    <string name="creator_dependencies">com.android.support:appcompat-v7:28.0.0
+    <string name="creator_dependencies" translatable="false">com.android.support:appcompat-v7:28.0.0
 \ncom.android.support:cardview-v7:28.0.0
 \ncom.android.support:design:28.0.0
 \ncom.android.support:support-vector-drawable:28.0.0
@@ -40,6 +40,7 @@
 \nannotationProcessor android.arch.persistence.room:compiler:1.1.1
 \nandroid.arch.persistence.room:rxjava2:1.1.1
 \ncom.yandex.android:mapkit:3.4.0
+\ncom.yandex.android:transport:3.4.0
 \ncom.google.android.gms:play-services-location:16.0.0
 \ntest junit:junit:4.12
 \nandroidTest com.android.support.test:runner:1.0.2
@@ -55,4 +56,6 @@
     <string name="dialog_download_success">Successful download!</string>
     <string name="no_write_permissions">No permissions to write file!</string>
     <string name="permissions_granted">Permissions granted, you can download pictures</string>
+    <string name="map_creator_location">Developer\'s location</string>
+    <string name="map_user_location">Your location</string>
 </resources>
