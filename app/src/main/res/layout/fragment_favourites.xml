@@ -27,7 +27,7 @@
                 style="@style/SmallTitleTextView"
                 android:layout_marginStart="@dimen/vertical_half_margin"
                 android:layout_marginTop="@dimen/vertical_margin"
-                android:text="@{@string/title_favourites_loaded(String.valueOf(favViewModel.photoItems.size()))}"
+                android:text="@{favViewModel.getFavouritesMessage(String.valueOf(favViewModel.photoItems.size()))}"
                 android:lineSpacingMultiplier="1.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

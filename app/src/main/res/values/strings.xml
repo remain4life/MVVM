@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">PhotoLoader</string>
     <string name="title_favourites">Favourites</string>
-    <string name="title_favourites_loaded">Favourites\ntotal: %1$s</string>
+    <string name="title_favourites_loaded_html">Favourites&lt;br/>total: &lt;b>%1$s&lt;/b></string>
     <string name="title_photos">Photos</string>
     <string name="title_photo_viewer">Photo Viewer</string>
-    <string name="title_photos_loaded">Photos from https://unsplash.com,\nloaded: %1$s from %2$s</string>
+    <string name="photo_signature">Photos by &lt;a href=\"%1$s\">%2$s&lt;/a> from &lt;a href=\"https://unsplash.com\">Unsplash&lt;/a></string>
+    <string name="title_photos_loaded_html">Photos from &lt;a href=\"https://unsplash.com\">Unsplash&lt;/a>,&lt;br/>loaded: &lt;b>%1$s&lt;/b> from &lt;b>%2$s&lt;/b></string>
     <string name="title_info">Info</string>
     <string name="title_map">Map</string>
 

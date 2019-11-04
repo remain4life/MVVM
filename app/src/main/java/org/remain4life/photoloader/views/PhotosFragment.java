@@ -3,6 +3,8 @@ package org.remain4life.photoloader.views;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 
 import org.remain4life.photoloader.BR;
@@ -39,5 +41,14 @@ public class PhotosFragment extends BaseFragment<FragmentPhotosBinding, PhotosVi
         binding.recyclerView.setHasFixedSize(true);
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public Spanned getPhotosMessage(String itemsSize, String maxPhotos) {
+        String html = String.format(getString(R.string.title_photos_loaded_html),
+                itemsSize,
+                maxPhotos);
+
+        return Html.fromHtml(html);
     }
 }

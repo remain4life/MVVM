@@ -2,6 +2,7 @@ package org.remain4life.photoloader.viewmodels;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.Spanned;
 
 import org.remain4life.photoloader.model.PhotoRepository;
 import org.remain4life.photoloader.viewmodels.base.BasePhotoModel;
@@ -33,5 +34,9 @@ public class FavouritesViewModel extends BasePhotoModel<IFavouritesNavigator> {
     public void onResume() {
         super.onResume();
         reloadFavourites();
+    }
+
+    public Spanned getFavouritesMessage(String itemsSize) {
+        return navigator.getFavouritesMessage(itemsSize);
     }
 }

@@ -3,6 +3,8 @@ package org.remain4life.photoloader.views;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 
 import org.remain4life.photoloader.BR;
@@ -39,5 +41,13 @@ public class FavouritesFragment extends BaseFragment<FragmentFavouritesBinding, 
         binding.recyclerView.setHasFixedSize(true);
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public Spanned getFavouritesMessage(String itemsSize) {
+        String html = String.format(getString(R.string.title_favourites_loaded_html),
+                itemsSize);
+
+        return Html.fromHtml(html);
     }
 }

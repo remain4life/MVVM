@@ -226,7 +226,6 @@ public class MapActivity extends BaseActivity<ActivityMapBinding, MapViewModel>
             // draw route
             for (Section section : routes.get(0).getSections()) {
                 drawSection(
-                        section.getMetadata().getData(),
                         SubpolylineHelper.subpolyline(
                                 routes.get(0).getGeometry(), section.getGeometry()));
             }
@@ -238,12 +237,9 @@ public class MapActivity extends BaseActivity<ActivityMapBinding, MapViewModel>
         onError(error.toString());
     }
 
-    private void drawSection(SectionMetadata.SectionData data,
-                             Polyline geometry) {
-        // Draw a section polyline on a map
-        // Set its color depending on the information which the section contains
+    private void drawSection(Polyline geometry) {
+        // draw a section polyline on a map
         PolylineMapObject polylineMapObject = binding.mapView.getMap().getMapObjects().addCollection().addPolyline(geometry);
-        // draw transport lines in primary color
         polylineMapObject.setStrokeColor(ContextCompat.getColor(getApplicationContext(), R.color.colorRoute));
     }
 }

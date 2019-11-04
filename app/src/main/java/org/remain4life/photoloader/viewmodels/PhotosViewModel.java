@@ -2,6 +2,8 @@ package org.remain4life.photoloader.viewmodels;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.Spannable;
+import android.text.Spanned;
 
 import org.remain4life.photoloader.helpers.ConnectivityStatus;
 import org.remain4life.photoloader.model.PhotoRepository;
@@ -32,5 +34,9 @@ public class PhotosViewModel extends BasePhotoModel<IPhotosNavigator> {
         } else {
             photoRepo.loadPhotoItemsFromDB(this, false);
         }
+    }
+
+    public Spanned getPhotosMessage(String itemsSize, String maxPhotos) {
+        return navigator.getPhotosMessage(itemsSize, maxPhotos);
     }
 }

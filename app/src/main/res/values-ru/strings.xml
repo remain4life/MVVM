@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">PhotoLoader</string>
     <string name="title_favourites">Избранное</string>
-    <string name="title_favourites_loaded">Избранное\nвсего: %1$s</string>
+    <string name="title_favourites_loaded_html">Избранное&lt;br/>всего: &lt;b>%1$s&lt;/b></string>
     <string name="title_photos">Фото</string>
     <string name="title_photo_viewer">Просмотр фото</string>
-    <string name="title_photos_loaded">Фото от https://unsplash.com,\nзагружено: %1$s из %2$s</string>
+    <string name="photo_signature">Фото &lt;a href=\"%1$s\">%2$s&lt;/a> от &lt;a href=\"https://unsplash.com\">Unsplash&lt;/a></string>
+    <string name="title_photos_loaded_html">Фото от &lt;a href=\"https://unsplash.com\">Unsplash&lt;/a>,&lt;br/>загружено: &lt;b>%1$s&lt;/b> из &lt;b>%2$s&lt;/b></string>
     <string name="title_info">Информация</string>
     <string name="title_map">Карта</string>
 

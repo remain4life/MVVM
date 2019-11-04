@@ -1,5 +1,6 @@
 package org.remain4life.photoloader.model;
 
+import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.os.Parcel;
@@ -11,6 +12,8 @@ import org.remain4life.photoloader.BR;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.remain4life.photoloader.R;
+import org.remain4life.photoloader.helpers.Application;
 import org.remain4life.photoloader.helpers.PhotosQuery;
 
 public class PhotoItem extends BaseObservable implements Parcelable {
@@ -109,8 +112,11 @@ public class PhotoItem extends BaseObservable implements Parcelable {
     }
 
     public Spanned getPhotoSignature() {
-        String html = "Photo by <a href=\"" + author.getUserLinks().getHtml() + "\">" + author.getName() + "</a> from " +
-                "<a href=\"https://unsplash.com\">Unsplash</a>";
+        Context context = Application.getApplication().getApplicationContext();
+
+        String html = String.format(context.getString(R.string.photo_signature),
+                author.getUserLinks().getHtml(),
+                author.getName());
 
         return Html.fromHtml(html);
     }
