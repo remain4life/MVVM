@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract public class BasePhotoModel<N extends INavigator> extends BaseViewModel<N>{
-    public static final int PHOTOS_NUMBER_TO_LOAD = 50;
     public static final int UNSPLASH_LOAD_LIMIT = 30;
     protected int photosLoaded = 0;
 

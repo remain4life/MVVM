@@ -55,8 +55,11 @@
     <string name="download_name_pattern" translatable="false">Picture_%1$s_%2$d.jpg</string>
     <string name="dialog_download_info">Picture was saved to</string>
     <string name="dialog_download_success">Successful download!</string>
+    <string name="dialog_choose_photos_to_load">Set number of photos to load</string>
     <string name="no_write_permissions">No permissions to write file!</string>
     <string name="permissions_granted">Permissions granted, you can download pictures</string>
     <string name="map_creator_location">Developer\'s location</string>
     <string name="map_user_location">Your location</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_photos_number">Photos to load</string>
 </resources>

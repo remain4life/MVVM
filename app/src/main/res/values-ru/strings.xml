@@ -27,6 +27,7 @@
     <string name="download_completed">Загрузка %1$s завершена</string>
     <string name="dialog_download_info">Изображение сохранено по адресу</string>
     <string name="dialog_download_success">Успешно загружено!</string>
+    <string name="dialog_choose_photos_to_load">Выберите число загружаемых фото</string>
     <string name="no_write_permissions">Нет полномочий сохранить файл!</string>
     <string name="permissions_granted">Полномочия получены, можно загружать изображения</string>
     <string name="map_creator_location">Местонахождение разработчика</string>

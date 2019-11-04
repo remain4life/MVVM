@@ -13,6 +13,7 @@ import org.remain4life.photoloader.helpers.Constants;
 import org.remain4life.photoloader.helpers.PhotosQuery;
 import org.remain4life.photoloader.viewmodels.base.BasePhotoModel;
 import org.remain4life.photoloader.viewmodels.base.BaseViewModel;
+import org.remain4life.photoloader.viewmodels.base.IPhotosLoadObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +25,23 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.remain4life.photoloader.helpers.Constants.APP_TAG;
 import static org.remain4life.photoloader.helpers.Constants.DB_TAG;
-import static org.remain4life.photoloader.viewmodels.base.BasePhotoModel.PHOTOS_NUMBER_TO_LOAD;
 import static org.remain4life.photoloader.viewmodels.base.BasePhotoModel.UNSPLASH_LOAD_LIMIT;
 
-public class PhotoRepository {
+public class PhotoRepository implements IPhotosSubject{
 
     private static PhotoRepository instance;
 
+    // variable to set number of photos to load from Unsplash (photos' screen)
+    private int photosToLoad = Constants.DEFAULT_PHOTOS;
+
     private AppDatabase db;
+
+    // observers to get max load photo number updates
+    private List<IPhotosLoadObserver> loadObservers;
 
     public PhotoRepository(AppDatabase db) {
         this.db = db;
+        loadObservers = new ArrayList<>();
     }
 
     public static PhotoRepository getInstance() {
@@ -52,7 +59,7 @@ public class PhotoRepository {
      */
     @SuppressLint("CheckResult")
     public void loadPhotos(BasePhotoModel model, boolean clearDB) {
-        if (model.getPhotosLoaded() < PHOTOS_NUMBER_TO_LOAD) {
+        if (model.getPhotosLoaded() < photosToLoad) {
             // calculate page number according to already loaded items
             int page = model.getPhotosLoaded() / UNSPLASH_LOAD_LIMIT + 1;
 
@@ -81,8 +88,8 @@ public class PhotoRepository {
 
                                 // if we're loading last page and loaded photos count is more then needed,
                                 // we need to calculate photos count to remove from loaded results
-                                if (model.getPhotosLoaded() > PHOTOS_NUMBER_TO_LOAD) {
-                                    int itemsRemove = model.getPhotosLoaded() - PHOTOS_NUMBER_TO_LOAD;
+                                if (model.getPhotosLoaded() > photosToLoad) {
+                                    int itemsRemove = model.getPhotosLoaded() - photosToLoad;
 
                                     for (int i = 0; i < itemsRemove; i++) {
                                         tempItems.remove(tempItems.size() - 1);
@@ -99,7 +106,7 @@ public class PhotoRepository {
                                     loadPhotoItemsToDB(model, tempItems);
                                 }
 
-                                if (model.getPhotosLoaded() < PHOTOS_NUMBER_TO_LOAD) {
+                                if (model.getPhotosLoaded() < photosToLoad) {
                                     // load photos again without cleaning
                                     loadPhotos(model, false);
                                 }
@@ -275,5 +282,33 @@ public class PhotoRepository {
                         },
                         throwable -> Log.e(Constants.ERROR_TAG, throwable.toString())
                 );
+    }
+
+    public int getPhotosToLoad() {
+        return photosToLoad;
+    }
+
+    public void setPhotosToLoad(int photosToLoad) {
+        this.photosToLoad = photosToLoad;
+        notifyObservers(photosToLoad);
+    }
+
+    @Override
+    public void registerObserver(IPhotosLoadObserver loadObserver) {
+        if(!loadObservers.contains(loadObserver)) {
+            loadObservers.add(loadObserver);
+        }
+    }
+
+    @Override
+    public void removeObserver(IPhotosLoadObserver loadObserver) {
+        loadObservers.remove(loadObserver);
+    }
+
+    @Override
+    public void notifyObservers(int loadPhotosNumber) {
+        for (IPhotosLoadObserver observer: loadObservers) {
+            observer.onUserDataChanged();
+        }
     }
 }

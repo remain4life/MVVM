@@ -43,4 +43,16 @@ public class Helper {
         drawable.draw(canvas);
         return bitmap;
     }
+
+    /**
+     * Converts size from dp to pixels
+     *
+     * @param dpSize size in dp to covert
+     * @return size in pixels
+     */
+    public static int dpTpPixels(int dpSize) {
+        float scale = Application.getApplication().getResources().getDisplayMetrics().density;
+        // 0.5 is used to get the closest integer when casting (instead of using Math.round())
+        return (int) (dpSize * scale + 0.5f);
+    }
 }

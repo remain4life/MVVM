@@ -11,4 +11,8 @@ public class Constants {
     /*private static final Point SPB_POINT = new Point(59.945933, 30.320045);
     private static final Point TOKIO_POINT = new Point(35.6895000, 139.6917100);
     private static final Point KERCH_POINT = new Point(45.356200, 36.467352);*/
+    public static final int MIN_PHOTOS = 10;
+    public static final int DEFAULT_PHOTOS = 50;
+    public static final int MAX_PHOTOS = 200;
+
 }
