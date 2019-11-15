@@ -29,11 +29,13 @@ abstract public class BasePhotoModel<N extends INavigator> extends BaseViewModel
     public void setPhotoItems(List<PhotoItem> photoItems) {
         this.photoItems = photoItems;
         notifyPropertyChanged(BR.photoItems);
+        navigator.update();
     }
 
     public void addPhotoItems(ArrayList<PhotoItem> newPhotoItems) {
         photoItems.addAll(newPhotoItems);
         notifyPropertyChanged(BR.photoItems);
+        navigator.update();
     }
 
     public int getPhotosLoaded() {

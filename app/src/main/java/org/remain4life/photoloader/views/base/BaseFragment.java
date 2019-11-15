@@ -133,4 +133,8 @@ public abstract class BaseFragment<B extends ViewDataBinding, VM extends BaseVie
             viewModel.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
+    public void update(){
+        binding.executePendingBindings();
+    }
 }

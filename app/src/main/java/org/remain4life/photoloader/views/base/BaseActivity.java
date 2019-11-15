@@ -125,5 +125,9 @@ public abstract class BaseActivity<B extends ViewDataBinding, VM extends BaseVie
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    public void update(){
+        binding.executePendingBindings();
+    }
 }
 
