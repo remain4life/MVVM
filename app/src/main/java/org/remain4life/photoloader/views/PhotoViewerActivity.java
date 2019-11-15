@@ -10,8 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -50,6 +49,12 @@ public class PhotoViewerActivity extends BaseActivity<ActivityPhotoViewerBinding
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(getString(R.string.title_photo_viewer));
+
+        // show the Up button in the action bar
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -82,15 +87,8 @@ public class PhotoViewerActivity extends BaseActivity<ActivityPhotoViewerBinding
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.backToMain) {
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }

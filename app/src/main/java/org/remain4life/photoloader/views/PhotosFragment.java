@@ -1,5 +1,6 @@
 package org.remain4life.photoloader.views;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import org.remain4life.photoloader.BR;
 import org.remain4life.photoloader.R;
 import org.remain4life.photoloader.adapters.PhotosRecyclerViewAdapter;
 import org.remain4life.photoloader.databinding.FragmentPhotosBinding;
+import org.remain4life.photoloader.helpers.Application;
 import org.remain4life.photoloader.viewmodels.PhotosViewModel;
 import org.remain4life.photoloader.views.base.BaseFragment;
 import org.remain4life.photoloader.views.base.IPhotosNavigator;
@@ -40,14 +42,14 @@ public class PhotosFragment extends BaseFragment<FragmentPhotosBinding, PhotosVi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         adapter = new PhotosRecyclerViewAdapter(getContext());
         binding.recyclerView.setAdapter(adapter);
-        binding.recyclerView.setHasFixedSize(true);
 
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public Spanned getPhotosMessage(String itemsSize, String maxPhotos) {
-        String html = String.format(getString(R.string.title_photos_loaded_html),
+        Context context = Application.getApplication().getApplicationContext();
+        String html = String.format(context.getString(R.string.title_photos_loaded_html),
                 itemsSize,
                 maxPhotos);
 
